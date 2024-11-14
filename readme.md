@@ -60,7 +60,7 @@ docker run -p 8080:8080 -e KC_BOOTSTRAP_ADMIN_USERNAME=admin -e KC_BOOTSTRAP_ADM
    Após isso, clicar em _Save_. 
 
     
-#### 📌 5. Configurar as credenciais do cliente e o URI do emissor no aaplication.yml.
+#### 📌 5. Configurar as credenciais do cliente e o URI do emissor no aplication.yml.
 
 Ao acessar a aba **Credentials**, ainda em **Clients**, podemos verificar a _client secret_.
 
