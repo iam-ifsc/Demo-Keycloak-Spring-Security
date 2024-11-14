@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-DemoApplication<Demo-Keycloak-Spring-Security>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.luizakuze.demo.DemoApplication",
+            "projectName": "Demo-Keycloak-Spring-Security",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

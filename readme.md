@@ -1,6 +1,8 @@
-# Projeto Spring Boot com Keycloak e OAuth2
+# Projeto Spring Boot com Keycloak e OAuth2 🌱
 
-Este é um projeto de exemplo que utiliza **Spring Boot**, **OAuth2**, e **Keycloak** para implementar autenticação e autorização em uma aplicação web. Ele permite o acesso a rotas públicas e privadas, demonstrando a integração com o Keycloak para autenticação via JWT.
+Este é um projeto de exemplo que utiliza **Spring Boot**, **OAuth2**, e **Keycloak** para implementar autenticação e autorização em uma aplicação web. 
+
+O Keycloak atua como authorization server, ele vai autorizar aplicações parceiras à acessar recursos protegidos da aplicação tuilizando o OAuth2 e o OIDC.
 
 ## Tecnologias Utilizadas
 
@@ -13,32 +15,57 @@ Este é um projeto de exemplo que utiliza **Spring Boot**, **OAuth2**, e **Keycl
 
 ### Pré-requisitos
 
-1. **Keycloak** precisa estar em execução. Se estiver usando o Keycloak local, a URL padrão é `http://localhost:8080`.
-2. Configurar um **realm** chamado `luizakuze`.
+1. **Keycloak** precisa estar em execução:
+```bash
+docker run -p 8080:8080 -e KC_BOOTSTRAP_ADMIN_USERNAME=admin -e KC_BOOTSTRAP_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:26.0.5 start-dev
+```
+2. Configurar um **realm**, nesse caso foi utilizado o nome `ifsc`. Essa realm vai atuar como um tenent, um grupo de usuários que compartilham um sistema comum.
+
+   ![alt text](./src/main/resources/imgs/realme.png)
+
+3. Crie um usuário para logar na aplicação:
+   > Note o seguinte: Está sendo utilizado usuário próprio. Também é possível colocar o Google como provedor de identidade
+
+   3.1. Na aba **Users**, preencha com as seguintes informações e depois clique em _Create_.
+
+   ![alt text](./src/main/resources/imgs/userKeycloak.png)
+
+   3.2. Ainda na aba **Users**, clique em **Credentials** e configure uma senha para este usuário. Ao final, clique em _Save_.
+
+   ![alt text](./src/main/resources/imgs/passwordKeycloak.png)
+
 3. Criar um **cliente OAuth2** no Keycloak:
+
+   A ideia do OAuth é autorizar terceiros à acessar um recurso protegido, então esses terceiros também devem ser conhecidos, são os chamados clientes.
+
+   Não basta autenticar o usuário, a aplicação também deve ser conhecida.
+
+   ![alt text](./src/main/resources/imgs/criarCliente.png)
+
+   Após pressionar "Create cliente", vamos ter as seguintes opções a serem preenchidas:
+
+   ![alt text](./src/main/resources/imgs/CreateClient01.png)
+
    - `client-id`: `spring-security-keycloak`
-   - `client-secret`: `eK0jsvSGkI5KeHZMUeyPp9OD5BSo9oNr`
-   - Scope: `openid, profile, email`
-4. Configurar as credenciais do cliente e o URI do emissor.
 
-## Estrutura do Projeto
 
-### 1. `DemoApplication.java`
-Classe principal que inicializa a aplicação.
+   Habilitar a opção "Client Authentication" em que faz ser gerada uma credencial para o client id, o chamado "client secret".
 
-### 2. `HttpController.java`
-Controller com rotas de exemplo:
-- `/public` - Rota pública acessível por qualquer pessoa.
-- `/private` - Rota privada acessível apenas para usuários autenticados.
-- `/cookie` - Exibe informações do token OAuth2.
-- `/jwt` - Exibe o JWT e claims do token.
+   ![alt text](./src/main/resources/imgs/CreateClient02.png)
 
-### 3. `SecurityConfig.java`
-Configuração de segurança para a aplicação:
-- Permite acesso público às rotas `/public` e `/logout`.
-- Exige autenticação para todas as outras rotas.
-- Integra o login via OAuth2 e autenticação JWT como Resource Server.
+   Em valid redirect uri tem que colocar o uri da aplicação, pois o fluxo do authorization code durante o redirecionamento para obter o token a partir do code a gente reconheça o endereço da aplicação é válido e é desse cliente.
+ 
+   ![alt text](./src/main/resources/imgs/CreateClient03.png)
 
+
+   Após isso, clicar em salvar. 
+
+   Ao acessar a aba Credentials, ainda em Clients, podemos verificar a client secret
+
+   Copiar ela para adicionar essa configuração no application.yml.
+    
+4. Configurar as credenciais do cliente e o URI do emissor no aaplication.yml.
+ 
 ## Como Executar
 
 1. Certifique-se de que o Keycloak está configurado e em execução conforme descrito acima.
