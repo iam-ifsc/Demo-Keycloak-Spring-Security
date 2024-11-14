@@ -1,10 +1,10 @@
 # Projeto Spring Boot com Keycloak e OAuth2 🌿
 
-Este é um projeto de exemplo que utiliza **Spring Boot**, **OAuth2**, e **Keycloak** para implementar autenticação e autorização em uma aplicação web. 
+Este é um projeto de exemplo que utiliza **Spring Boot** e **Keycloak** para implementar autenticação e autorização em uma aplicação web. 
 
-O Keycloak atua como authorization server, ele vai autorizar aplicações parceiras à acessar recursos protegidos da aplicação tuilizando o OAuth2 e o OIDC.
+O Keycloak atua como authorization server, ele vai autorizar aplicações parceiras à acessar recursos protegidos da aplicação utilizando o **OAuth2** e o **OIDC**.
 
-
+## Tecnologias 📚
 - **Spring Boot**
 - **Spring Security**
 - **OAuth2**
