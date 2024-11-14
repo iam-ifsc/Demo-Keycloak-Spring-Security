@@ -9,7 +9,7 @@ spring:
           keycloak:
             #credenciais do cliente oauth2 cadastrado no keycloak
             client-id: spring-security-keycloak
-            client-secret: GLn24TibnYqSLFIgeNJaGtjNk67i3SZ8
+            client-secret: uJfGqETM6AaLpiWtXkMKIQxXQhse9keK
             scope: openid, profile, email
         provider:
           #cliente oauth apontando para o keycloak

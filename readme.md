@@ -9,7 +9,7 @@ O Keycloak atua como authorization server, ele vai autorizar aplicações parcei
 - **Spring Boot**
 - **Spring Security**
 - **OAuth2**
-- **Keycloak** (como servidor de identidade)
+- **Keycloak**   
 
 ## Configuração do Keycloak
  
@@ -75,10 +75,10 @@ Copiar o conteúdo do campo _client secret_ e adicionar ao `application.yml`.
 2. Execute a aplicação Spring Boot com o comando:
 
    ```bash
-   ./gradlew run
+   ./gradlew bootrun
    ```
 3. Acesse as rotas para testar:
-- Rota pública: http://localhost:9090/public 
-- Rota privada (necessário login): http://localhost:9090/private
--  Rota com informações do token OAuth2: http://localhost:9090/cookie 
+- `http://localhost:9090/public `
+- `http://localhost:9090/private`
+- `http://localhost:9090/cookie` 
  
